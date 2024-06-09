@@ -1,0 +1,171 @@
+UT7_PD1
+
+
+Ej1
+
+3-
+
+procedure Dijkstra(con caminos)
+    Inicializar S, D, P
+    S = {1}
+    para i = 2 a n hacer
+        D[i] = C[1, i]  // Valor inicial, infinito si no hay camino directo
+    fin para
+
+    mientras V ≠ S hacer
+        // Elegir w perteneciente a V-S tal que D[w] sea mínimo
+        w = nodo en V-S con D[w] mínimo
+        agregar w a S
+
+        para cada v perteneciente a V-S hacer
+            si D[w] + costo(w, v) < D[v] entonces
+                D[v] = D[w] + costo(w, v)
+                P[v] = w
+            fin si
+        fin para cada
+    fin mientras
+fin procedure
+
+
+CONJUNTO S:
+
+S = {B}
+
+CONJUNTO(Conjunto de nodos) V = {B,C,D,E,A}
+
+DISTANCIAS(CONJUNTO D)
+
+D[A] = 7
+
+D[B] = 0
+
+D[C] = 1
+
+D[D] = 2
+
+D[E] = ∞
+
+
+S = {B, C} 
+
+
+PREDECESORES P:
+
+P[A] = B
+
+P[B] = null
+
+P[C] = B
+
+P[D] = B
+
+P[E] = null
+
+
+Primera Iteración:
+
+S = {B}
+
+D = [7,0,1,2,∞]
+
+P = [B, null, B, B, null]
+
+
+Segunda iteración:
+
+
+S = {B,C}
+
+D = [7,0,1,2,∞]
+
+P = [B, null, B, B, null]
+
+
+
+Tercera iteración:
+
+S = {B,C,D}
+
+D = [7,0,1,2,6]
+
+P = [B, null, B, B, D]
+
+
+Cuarta iteración:
+
+S = {B,C,D,A}
+
+D = [7,0,1,2,6]
+
+P = [B, null, B, B, D]
+
+
+QUINTA ITERACIÓN:
+
+
+S = {B,C,D,A,E}
+
+D = [7,0,1,2,6]
+
+P = [B, null, B, B, D]
+
+
+RESULTADOS FINALES:
+
+DISTANCIAS:
+
+D[A] = 7
+
+D[B] = 0
+
+D[C] = 1
+
+D[D] = 2
+
+D[E] = 6
+
+
+PREDECESORES:
+
+P[A] = B
+
+P[B] = NULL
+
+P[C] = B
+
+P[D] = B   
+
+P[E] = D
+
+CAMINOS MAS CORTOS:
+
+B,A = 7
+
+B,B = 0
+
+B,C = 1 
+
+B,D = 2
+
+B,D,E = 6
+
+
+
+Parte 3:
+
+procedure ImprimirCaminos(Vector[] predecesores, VDestino) VDestino = E
+
+Vector[] caminoFinal = {}
+
+w = VDestino
+
+mientras w != null
+  caminoFinal.agregar(w)
+  w = w.obtenerPredecesor()
+fin Mientras
+
+caminoFinal.invertir()
+
+devolver caminoFinal
+
+
